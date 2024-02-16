@@ -3,10 +3,13 @@ package zorange.online.blogserver.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.bind.annotation.*;
+
 import javax.annotation.Resource;
 import java.util.List;
+
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
+import zorange.online.blogserver.common.Result;
 import zorange.online.blogserver.entity.User;
 import zorange.online.blogserver.service.IUserService;
 
@@ -20,74 +23,89 @@ import org.springframework.web.bind.annotation.RestController;
  * @author zorange
  * @since 2024-02-16
  */
+
+
 @RestController
 @RequestMapping("/user")
-        public class UserController {
-    
-@Resource
-private IUserService userService;
+public class UserController {
 
-/**
- * 新增和修改
- * @param user 实体对象
- * @return Result
- */
-@PostMapping
-public boolean save(@RequestBody User user) {
+    @Resource
+    private IUserService userService;
+
+    /**
+     * 新增和修改
+     *
+     * @param user 实体对象
+     * @return Result
+     */
+
+
+    @PostMapping("/login")
+    public Result login(@RequestBody User user) {
+        return Result.success(userService.login(user));
+    }
+
+    @PostMapping
+    public boolean save(@RequestBody User user) {
         return userService.saveOrUpdate(user);
-        }
+    }
 
-/**
-* 根据id删除
-* @param id 主键id
-* @return boolean
-*/
-@DeleteMapping("/{id}")
-public boolean deleteById(@PathVariable Integer id) {
+    /**
+     * 根据id删除
+     *
+     * @param id 主键id
+     * @return boolean
+     */
+    @DeleteMapping("/{id}")
+    public boolean deleteById(@PathVariable Integer id) {
         return userService.removeById(id);
-        }
+    }
 
-/**
- * 查询所有
- * @return List<User>
- */
-@GetMapping
-public List<User> findAll() {
+    /**
+     * 查询所有
+     *
+     * @return List<User>
+     */
+    @GetMapping
+    public List<User> findAll() {
         return userService.list();
-        }
+    }
 
-/**
- * 根据id查询
- * @param id 主键id
- * @return User
- */
-@GetMapping("/{id}")
-public User findById(@PathVariable Integer id) {
+    /**
+     * 根据id查询
+     *
+     * @param id 主键id
+     * @return User
+     */
+    @GetMapping("/{id}")
+    public User findById(@PathVariable Integer id) {
         return userService.getById(id);
-        }
+    }
 
-/**
- * 分页查询
- * @param pageNum 当前页
- * @param pageSize 每页显示的条数
- * @return Page<User>
- */
-@GetMapping("/page")
-public Page<User> findPage(@RequestParam Integer pageNum, @RequestParam Integer pageSize) {
-        QueryWrapper<User> wrapper=new QueryWrapper<>();
+    /**
+     * 分页查询
+     *
+     * @param pageNum  当前页
+     * @param pageSize 每页显示的条数
+     * @return Page<User>
+     */
+    @GetMapping("/page")
+    public Page<User> findPage(@RequestParam Integer pageNum, @RequestParam Integer pageSize) {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
         return userService.page(new Page<>(pageNum, pageSize), wrapper);
-        }
+    }
 
-/**
-* 批量删除
-* @param ids 主键id集合
-* @return boolean
-*/
-@DeleteMapping("del/batch")
-public boolean deleteBatchById(@RequestBody List<Integer> ids) {
+    /**
+     * 批量删除
+     *
+     * @param ids 主键id集合
+     * @return boolean
+     */
+    @DeleteMapping("del/batch")
+    public boolean deleteBatchById(@RequestBody List<Integer> ids) {
         return userService.removeBatchByIds(ids);
-        }
+    }
 
 
-        }
+}
 

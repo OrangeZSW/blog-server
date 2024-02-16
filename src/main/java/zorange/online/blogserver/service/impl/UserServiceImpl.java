@@ -1,5 +1,6 @@
 package zorange.online.blogserver.service.impl;
 
+import zorange.online.blogserver.common.Result;
 import zorange.online.blogserver.entity.User;
 import zorange.online.blogserver.mapper.UserMapper;
 import zorange.online.blogserver.service.IUserService;
@@ -17,4 +18,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
+    @Override
+    public Result login(User user) {
+        return null;
+    }
 }
