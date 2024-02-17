@@ -48,8 +48,12 @@ public class User implements Serializable {
 
       @ApiModelProperty("最后登录时间")
       private LocalDateTime lastLoginTime;
+
       @ApiModelProperty("封面图片URL")
       private String coverImg;
+
+      @ApiModelProperty("博客描述")
+      private String description;
 
 
 }
