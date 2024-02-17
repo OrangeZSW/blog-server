@@ -41,7 +41,7 @@ public class Article implements Serializable {
       private String content;
 
       @ApiModelProperty("文章标签，逗号分隔")
-      private String tags;
+      private String tag;
 
       @ApiModelProperty("创建时间")
       private LocalDateTime createdAt;
@@ -49,7 +49,8 @@ public class Article implements Serializable {
       @ApiModelProperty("最后更新时间")
       private LocalDateTime lastUpdatedAt;
 
-    private String coverImg;
+      @ApiModelProperty("封面图片URL")
+      private String coverImg;
 
 
 }

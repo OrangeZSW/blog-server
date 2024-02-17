@@ -19,7 +19,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-  @ApiModel(value = "Blog对象", description = "博客表")
+  @ApiModel(value = "Blog对象", description = "分类表")
 public class Blog implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -34,8 +34,6 @@ public class Blog implements Serializable {
       @ApiModelProperty("博客标题")
       private String title;
 
-      @ApiModelProperty("博客描述")
-      private String description;
 
       @ApiModelProperty(" 创建时间")
       private LocalDateTime createdAt;
