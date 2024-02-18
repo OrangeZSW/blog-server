@@ -18,9 +18,8 @@ public class CorsConfig {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         //配置跨域规则
         CorsConfiguration corsConfiguration = new CorsConfiguration();
-
         //允许携带cookie
-        corsConfiguration.addAllowedOriginPattern("http://localhost:8080");
+        corsConfiguration.addAllowedOriginPattern("*");
         //允许所有请求头
         corsConfiguration.addAllowedHeader("*");
         //允许所有请求方法
