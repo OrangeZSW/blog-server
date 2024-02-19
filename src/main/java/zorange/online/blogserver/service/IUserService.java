@@ -3,6 +3,7 @@ package zorange.online.blogserver.service;
 import zorange.online.blogserver.common.Result;
 import zorange.online.blogserver.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
+import zorange.online.blogserver.entity.dto.UserDto;
 
 /**
  * <p>
@@ -14,5 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IUserService extends IService<User> {
 
-    Result login(User user);
+    UserDto login(User user);
 }

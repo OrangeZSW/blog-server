@@ -24,7 +24,7 @@ import org.springframework.stereotype.Service;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
     @Override
-    public Result login(User user) {
+    public UserDto login(User user) {
         QueryWrapper<User> wrapper = new QueryWrapper<User>();
         wrapper.eq("nickname", user.getNickname());
         wrapper.eq("password", user.getPassword());
@@ -33,7 +33,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             UserDto userDto = new UserDto();
             System.out.println(one);
             BeanUtil.copyProperties(one, userDto);
-            return Result.success(userDto);
+            return userDto;
         }else{
             throw  new ServiceException(Constants.CODE_PARAM_ERROR,"用户名或密码错误");
         }
