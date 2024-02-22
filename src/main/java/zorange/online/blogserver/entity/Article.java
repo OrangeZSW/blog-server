@@ -37,8 +37,8 @@ public class Article implements Serializable {
       @ApiModelProperty("文章标题")
       private String title;
 
-      @ApiModelProperty("文章内容")
-      private String content;
+      @ApiModelProperty("文章url")
+      private String url;
 
       @ApiModelProperty("文章标签，逗号分隔")
       private String tag;

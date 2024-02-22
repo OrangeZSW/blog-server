@@ -38,7 +38,7 @@ public class CodeGenerator {
                     builder.entityBuilder().enableLombok();  // 为实体类添加lombok注解
                     builder.controllerBuilder().enableRestStyle(); // 为控制器添加@RestController注解
                     builder.mapperBuilder().enableMapperAnnotation().build(); // 为mapper添加@Mapper注解
-                    builder.addInclude("")
+                    builder.addInclude("file")
                             .addTablePrefix("t_");
                 })
 //                .templateEngine(new FreemarkerTemplateEngine()) // 指定模板引擎，默认是VelocityTemplateEngine ，需要引入相关引擎依赖
