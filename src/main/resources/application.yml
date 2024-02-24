@@ -1,18 +1,28 @@
-
 server:
+  ip: https://server.blog.zorange.online
+#  ip: http://127.0.0.1:8181
   port: 8181
 spring:
+  servlet:
+    multipart:
+      max-file-size: 3MB
+      max-request-size: 3MB
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
     username: root
     password: 421232
-mybatis:
-  mapper-locations: classpath:mapper/*.xml #calsspath??resources??
-  configuration:
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   type-aliases-package: online.zorange.blogserver.entity
+
+files:
+    upload:
+      article: /home/server/files/article/
+      img: /home/server/files/img/
+#    upload:
+#      article: C:\Users\orange\Desktop\毕业设计选题\博客系统\files\article\
+#      img: C:\Users\orange\Desktop\毕业设计选题\博客系统\files\img\
+

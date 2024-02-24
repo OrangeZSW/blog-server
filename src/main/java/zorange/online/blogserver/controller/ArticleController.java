@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
+import zorange.online.blogserver.common.Result;
 import zorange.online.blogserver.entity.Article;
 import zorange.online.blogserver.service.IArticleService;
 
@@ -29,6 +30,19 @@ public class ArticleController {
     @Resource
     private IArticleService articleService;
 
+
+    /**
+     * 根据用户id查询
+     *
+     * @param userId 用户id
+     * @return Result
+     */
+    @GetMapping("/userId/{userId}")
+    public Result findByUserId(@PathVariable Integer userId) {
+        return Result.success(articleService.findByUserId(userId));
+    }
+
+
     /**
      * 新增和修改
      *
@@ -36,8 +50,8 @@ public class ArticleController {
      * @return Result
      */
     @PostMapping
-    public boolean save(@RequestBody Article article) {
-        return articleService.saveOrUpdate(article);
+    public Result save(@RequestBody Article article) {
+        return Result.success(articleService.saveOrUpdate(article));
     }
 
     /**
@@ -57,8 +71,8 @@ public class ArticleController {
      * @return List<Article>
      */
     @GetMapping
-    public List<Article> findAll() {
-        return articleService.list();
+    public Result findAll() {
+        return Result.success(articleService.findAll());
     }
 
     /**

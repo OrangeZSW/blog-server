@@ -28,8 +28,8 @@ public class Article implements Serializable {
         @TableId(value = "article_id", type = IdType.AUTO)
       private Integer articleId;
 
-      @ApiModelProperty("博客ID，外键关联Blog表")
-      private Integer blogId;
+      @ApiModelProperty("分类")
+      private String category;
 
       @ApiModelProperty("用户ID，外键关联User表")
       private Integer userId;
