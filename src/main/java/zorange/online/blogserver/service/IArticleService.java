@@ -13,7 +13,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IArticleService extends IService<Article> {
 
-    Object findByUserId(Integer userId);
+    Object findByUserId(Integer userId, Integer Number, Integer NumberSize);
 
     Object findAll();
 }

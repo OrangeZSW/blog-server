@@ -1,6 +1,6 @@
 server:
-  ip: https://server.blog.zorange.online
-#  ip: http://127.0.0.1:8181
+#  ip: https://server.blog.zorange.online
+  ip: http://127.0.0.1:8181
   port: 8181
 spring:
   servlet:
@@ -19,10 +19,10 @@ mybatis-plus:
   type-aliases-package: online.zorange.blogserver.entity
 
 files:
-    upload:
-      article: /home/server/files/article/
-      img: /home/server/files/img/
 #    upload:
-#      article: C:\Users\orange\Desktop\毕业设计选题\博客系统\files\article\
-#      img: C:\Users\orange\Desktop\毕业设计选题\博客系统\files\img\
+#      article: /home/server/files/article/
+#      img: /home/server/files/img/
+    upload:
+      article: C:\Users\orange\Desktop\毕业设计选题\博客系统\files\article\
+      img: C:\Users\orange\Desktop\毕业设计选题\博客系统\files\img\
 

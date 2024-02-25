@@ -38,8 +38,8 @@ public class ArticleController {
      * @return Result
      */
     @GetMapping("/userId/{userId}")
-    public Result findByUserId(@PathVariable Integer userId) {
-        return Result.success(articleService.findByUserId(userId));
+    public Result findByUserId(@PathVariable Integer userId,@RequestParam Integer Number, @RequestParam Integer NumberSize) {
+        return Result.success(articleService.findByUserId(userId,Number,NumberSize));
     }
 
 
@@ -71,8 +71,9 @@ public class ArticleController {
      * @return List<Article>
      */
     @GetMapping
-    public Result findAll() {
-        return Result.success(articleService.findAll());
+    public Result findAll(@RequestParam Integer Number, @RequestParam Integer NumberSize) {
+        Page<Article> page = articleService.page(new Page<>(Number, NumberSize));
+        return Result.success(page);
     }
 
     /**
