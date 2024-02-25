@@ -72,8 +72,7 @@ public class ArticleController {
      */
     @GetMapping
     public Result findAll(@RequestParam Integer Number, @RequestParam Integer NumberSize) {
-        Page<Article> page = articleService.page(new Page<>(Number, NumberSize));
-        return Result.success(page);
+        return Result.success(articleService.findAll(Number,NumberSize));
     }
 
     /**
