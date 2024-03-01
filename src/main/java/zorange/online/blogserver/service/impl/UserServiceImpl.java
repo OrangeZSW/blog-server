@@ -38,4 +38,16 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
             throw  new ServiceException(Constants.CODE_PARAM_ERROR,"用户名或密码错误");
         }
     }
+
+    @Override
+    public Object findByNickname(String nickname) {
+        QueryWrapper<User> wrapper = new QueryWrapper<User>();
+        wrapper.eq("nickname", nickname);
+        User one = this.getOne(wrapper);
+        if(one != null) {
+            return true;
+        }
+        return false;
+    }
+
 }

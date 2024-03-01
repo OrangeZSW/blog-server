@@ -40,14 +40,26 @@ public class UserController {
      */
 
 
+
+    @GetMapping("/nickname")
+    public Result findByNickname(@RequestParam String nickname) {
+        return Result.success(userService.findByNickname(nickname));
+    }
+
     @PostMapping("/login")
     public Result login(@RequestBody User user) {
         return Result.success(userService.login(user));
     }
 
     @PostMapping
-    public boolean save(@RequestBody User user) {
-        return userService.saveOrUpdate(user);
+    public Result save(@RequestBody User user) {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("nickname", user.getNickname());
+        User one = userService.getOne(wrapper);
+        if(one != null) {
+            return Result.error("用户名已存在");
+        }
+        return Result.success(userService.save(user));
     }
 
     /**

@@ -16,4 +16,6 @@ import zorange.online.blogserver.entity.dto.UserDto;
 public interface IUserService extends IService<User> {
 
     UserDto login(User user);
+
+    Object findByNickname(String nickname);
 }
