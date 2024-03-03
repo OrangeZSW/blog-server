@@ -4,9 +4,9 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.crypto.SecureUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import lombok.Cleanup;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.multipart.MultipartFile;
+import zorange.online.blogserver.common.Constants;
 import zorange.online.blogserver.common.Result;
 import zorange.online.blogserver.entity.Files;
 import zorange.online.blogserver.mapper.FilesMapper;
@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import zorange.online.blogserver.exception.ServiceException;
 
 
 /**
@@ -94,6 +95,10 @@ public class FilesServiceImpl extends ServiceImpl<FilesMapper, Files> implements
         String originalFilename = file.getOriginalFilename();
         //获取文件类型
         String type = FileUtil.extName(originalFilename);
+        //判断是不是图片
+        if (!"jpg".equals(type) && !"png".equals(type) && !"jpeg".equals(type) && !"gif".equals(type)) {
+            throw new ServiceException(Constants.CODE_NOT_LOGIN,"文件类型不正确");
+        }
         //获取文件大小
         long size = file.getSize();
         //获取文件的父目录

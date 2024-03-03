@@ -32,14 +32,6 @@ public class UserController {
     @Resource
     private IUserService userService;
 
-    /**
-     * 新增和修改
-     *
-     * @param user 实体对象
-     * @return Result
-     */
-
-
 
     @GetMapping("/nickname")
     public Result findByNickname(@RequestParam String nickname) {
