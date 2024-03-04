@@ -11,5 +11,7 @@ public class UserDto {
     private String avatar;
     private String coverImg;
     private String description;
-
+    private String announcement;
+    private String email;
+    private String subHeading;
 }

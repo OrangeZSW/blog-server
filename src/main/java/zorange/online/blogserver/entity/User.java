@@ -55,5 +55,11 @@ public class User implements Serializable {
       @ApiModelProperty("博客描述")
       private String description;
 
+      @ApiModelProperty("公告")
+      private String announcement;
+
+      @ApiModelProperty("副标题")
+      private String subHeading;
+
 
 }
