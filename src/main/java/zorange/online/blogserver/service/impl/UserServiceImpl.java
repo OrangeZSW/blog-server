@@ -50,4 +50,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
         return false;
     }
 
+    @Override
+    public Object findByUsername(String username) {
+        QueryWrapper<User> wrapper = new QueryWrapper<User>();
+        wrapper.eq("username", username);
+        User one = this.getOne(wrapper);
+        if(one != null) {
+            return true;
+        }
+        return false;
+    }
+
 }

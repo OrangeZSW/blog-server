@@ -24,7 +24,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2024-02-16
  */
 
-
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -42,16 +41,22 @@ public class UserController {
     public Result login(@RequestBody User user) {
         return Result.success(userService.login(user));
     }
-
     @PostMapping
     public Result save(@RequestBody User user) {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
         wrapper.eq("nickname", user.getNickname());
         User one = userService.getOne(wrapper);
-        if(one != null) {
-            return Result.error("用户名已存在");
+        if(user.getUserId()==null){
+            if(one != null) {
+                return Result.error("用户名已存在");
+            }
+            return Result.success(userService.save(user));
+        }else{
+            if(one != null && !one.getUserId().equals(user.getUserId())) {
+                return Result.error("用户名已存在");
+            }
+            return Result.success(userService.updateById(user));
         }
-        return Result.success(userService.save(user));
     }
 
     /**
@@ -109,6 +114,12 @@ public class UserController {
     public boolean deleteBatchById(@RequestBody List<Integer> ids) {
         return userService.removeBatchByIds(ids);
     }
+
+    @GetMapping("/username")
+public Result findByUsername(@RequestParam String username) {
+        return Result.success(userService.findByUsername(username));
+    }
+
 
 
 }

@@ -18,4 +18,6 @@ public interface IUserService extends IService<User> {
     UserDto login(User user);
 
     Object findByNickname(String nickname);
+
+    Object findByUsername(String username);
 }
