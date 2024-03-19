@@ -121,6 +121,12 @@ public Result findByUsername(@RequestParam String username) {
     }
 
 
-
+    public void updatePassword(String password, String userId) {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_id", userId);
+        User one = userService.getOne(wrapper);
+        one.setPassword(password);
+        userService.updateById(one);
+    }
 }
 

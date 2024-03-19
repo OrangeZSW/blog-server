@@ -1,6 +1,7 @@
 server:
-#  ip: https://server.blog.zorange.online
+
   ip: http://127.0.0.1:8181
+#  ip: https://server.blog.zorange.online
   port: 8181
 spring:
   servlet:

@@ -12,10 +12,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import zorange.online.blogserver.common.Result;
+import zorange.online.blogserver.controller.UserController;
+
+import javax.annotation.Resource;
 
 @RestController
 @RequestMapping("/email")
 public class EmailController {
+
+    @Resource
+    private UserController userController;
     private static String EMAIL= "email";
 
     private static String EMAIL_CODE = "email_code";
@@ -53,7 +59,7 @@ public class EmailController {
     * 验证验证码
     * @param code 验证
      */
-    @GetMapping("/code/verify")
+    @GetMapping("/code/verifyEmail")
     public Result verifyEmailCode(@RequestParam String code,@RequestParam String email) {
             if(!EMAIL.equals(email)){
                 return Result.error("请先发送验证码");
@@ -66,5 +72,24 @@ public class EmailController {
             EMAIL = "email";
             EMAIL_CODE = "email_code";
             return Result.success();
+    }
+
+    @GetMapping("/code/verifyPassword")
+    public Result verifyPassword(@RequestParam String password,@RequestParam String code,@RequestParam String userId) {
+        if(EMAIL_CODE.equals("email_code")){
+            return Result.error("请先发送验证码");
+        }else
+       if(!EMAIL_CODE.equals(code)){
+           return Result.error("验证码错误");
+         }
+       else if(DateTime.now().isAfter(EMAIL_CODE_EXPIRE_TIME)){
+           return Result.error("验证码已过期");
+         }
+        //修改密码
+        userController.updatePassword(password,userId);
+        //清空验证码
+        EMAIL_CODE = "email_code";
+
+        return Result.success("修改成功");
     }
 }
