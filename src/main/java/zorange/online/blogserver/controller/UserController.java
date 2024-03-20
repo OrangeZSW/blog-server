@@ -128,5 +128,10 @@ public Result findByUsername(@RequestParam String username) {
         one.setPassword(password);
         userService.updateById(one);
     }
+    //根据id查询作者信息
+    @GetMapping("/author/{id}")
+    public Result findAuthorById(@PathVariable Integer id) {
+        return Result.success(userService.getById(id));
+    }
 }
 

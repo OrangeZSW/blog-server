@@ -44,7 +44,6 @@ public class ArticleController {
     public Result findByUserId(@PathVariable Integer userId,@RequestParam Integer Number, @RequestParam Integer NumberSize) {
         return Result.success(articleService.findByUserId(userId,Number,NumberSize));
     }
-
     /**
      * 新增和修改
      *
@@ -118,6 +117,12 @@ public class ArticleController {
         return articleService.removeBatchByIds(ids);
     }
 
-
+    /*
+    * 根据文章id查询用户id
+     */
+    @GetMapping("/userIdByArticleId/{articleId}")
+    public Result findUserIdByArticleId(@PathVariable Integer articleId) {
+        return Result.success(articleService.getById(articleId).getUserId());
+    }
 }
 
