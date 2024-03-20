@@ -16,4 +16,6 @@ public interface IArticleService extends IService<Article> {
     Object findByUserId(Integer userId, Integer Number, Integer NumberSize);
 
     Object findAll(Integer Number, Integer NumberSize);
+
+
 }

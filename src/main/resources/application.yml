@@ -10,7 +10,8 @@ spring:
       max-request-size: 3MB
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/blog?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
+#    120.26.79.238
+    url: jdbc:mysql://localhost/blog?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=GMT%2B8
     username: root
     password: 421232
 mybatis-plus:
@@ -18,6 +19,8 @@ mybatis-plus:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   type-aliases-package: online.zorange.blogserver.entity
+
+
 
 files:
 #    upload:

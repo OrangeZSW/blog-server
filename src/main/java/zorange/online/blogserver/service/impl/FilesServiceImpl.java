@@ -42,6 +42,8 @@ public class FilesServiceImpl extends ServiceImpl<FilesMapper, Files> implements
     @Value("${server.ip}")
     private String serverIp;
 
+    private ArticleServiceImpl articleService;
+
     @Override
     public String uploadArticle(MultipartFile file) throws IOException {
         //获取文件名
@@ -86,6 +88,7 @@ public class FilesServiceImpl extends ServiceImpl<FilesMapper, Files> implements
         saveFile.setUrl(Url);
         saveFile.setMd5(md5);
         this.save(saveFile);
+
         return Url;
     }
 
