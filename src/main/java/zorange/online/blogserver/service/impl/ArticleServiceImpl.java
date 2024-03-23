@@ -55,7 +55,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         List<String> tagList = new ArrayList<>();
         Page<Article> page = new Page<>(Number, NumberSize);
         QueryWrapper<Article> wrapper = new QueryWrapper<>();
-        wrapper.orderByDesc("created_at");
+        wrapper.orderByDesc("last_updated_at");
         Page<Article> ArticleInfo = this.page(page, wrapper);
         //查询category不为''且唯一的数据
         for (Article article : ArticleInfo.getRecords()) {
