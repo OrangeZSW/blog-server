@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -114,6 +115,12 @@ public class FilesController {
     @DeleteMapping("del/batch")
     public boolean deleteBatchById(@RequestBody List<Integer> ids) {
         return filesService.removeBatchByIds(ids);
+    }
+
+    @PostMapping("/updateArticle")
+    public Result updateArticle(@RequestParam("file") MultipartFile file,@RequestParam("url") String url) throws IOException {
+
+        return Result.success(filesService.updateArticle(file,url));
     }
 
 

@@ -18,6 +18,7 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
@@ -176,5 +177,31 @@ public class FilesServiceImpl extends ServiceImpl<FilesMapper, Files> implements
         os.close();
         return Result.success("下载成功");
 
+    }
+
+    @Override
+    public Object updateArticle(MultipartFile file, String url) throws IOException {
+        String Filename = file.getOriginalFilename();
+        String size = String.valueOf(file.getSize());
+        String md5 = SecureUtil.md5(file.getInputStream());
+        String uuid = url.substring(url.lastIndexOf("/") + 1);
+
+        String filepath = uploadArticle + uuid;
+        File oldFile = new File(filepath);
+        //修改文件内容
+        try {
+            file.transferTo(oldFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //修改文件信息
+        QueryWrapper<Files> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("url", url);
+        Files files = this.getOne(queryWrapper);
+        files.setName(Filename);
+        files.setSize(Long.parseLong(size));
+        files.setMd5(md5);
+        this.updateById(files);
+        return true;
     }
 }

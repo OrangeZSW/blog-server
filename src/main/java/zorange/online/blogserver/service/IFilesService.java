@@ -23,4 +23,6 @@ public interface IFilesService extends IService<Files> {
     String uploadImg(MultipartFile file) throws IOException;
 
     Result download(String fileUuid, HttpServletResponse response) throws IOException;
+
+    Object updateArticle(MultipartFile file,String url) throws IOException;
 }

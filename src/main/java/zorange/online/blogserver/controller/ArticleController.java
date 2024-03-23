@@ -1,6 +1,7 @@
 package zorange.online.blogserver.controller;
 
 
+import cn.hutool.Hutool;
 import cn.hutool.core.date.DateTime;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.bind.annotation.*;
@@ -53,7 +54,10 @@ public class ArticleController {
     @PostMapping
     public Result save(@RequestBody Article article) {
         //设置创建时间
-        article.setCreatedAt(new Timestamp(new Date().getTime()).toLocalDateTime());
+        if (article.getArticleId() == null){
+            article.setCreatedAt(new Timestamp(new Date().getTime()).toLocalDateTime());
+            System.out.println("创建时间"+article.getCreatedAt());
+        }
         //设置最后更新时间
         article.setLastUpdatedAt(new Timestamp(new Date().getTime()).toLocalDateTime());
         articleService.saveOrUpdate(article);

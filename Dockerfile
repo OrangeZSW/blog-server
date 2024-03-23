@@ -1,5 +1,3 @@
-
-
 #使用 cnetos 作为基础镜像
 FROM openjdk:17-jdk-alpine
 
@@ -8,7 +6,7 @@ FROM openjdk:17-jdk-alpine
 WORKDIR /app
 
 # 将本地编译好的 JAR 文件复制到容器中的工作目录
-COPY target/Blog-Server-0.0.1-SNAPSHOT.jar /app/
+COPY /target/Blog-Server-0.0.1-SNAPSHOT.jar /app/
 
 # 安装字体
 RUN apk add --no-cache ttf-dejavu
